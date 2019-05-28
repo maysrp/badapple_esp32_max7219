@@ -1,6 +1,8 @@
 # badapple_esp32_max7219
 esp32  Micropython Max7219 
 
+[视频地址](https://www.bilibili.com/video/av53892585)
+
 + SDcard卡槽  
 
 + max7219 LED点阵 8x8 16块
@@ -33,4 +35,5 @@ CS|D5
 [max7219.py](https://github.com/mcauser/micropython-max7219)
 
 [scard.py](https://github.com/zhangxuhong1024/wifi2can)
+
 
