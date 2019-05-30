@@ -22,8 +22,8 @@ ss = Pin(5, Pin.OUT)
 display = max7219.Matrix8x8(spi,ss,16)
 
 class play():
-    def pxy(self,x,y,c):
-        display.pixel(x,y,c)
+    def pxy(self,x,y,z,c):
+        display.hline(x,y,z,c)
     def image(self,img_list):
         display.fill(img_list[0])
         if img_list[0]==1:
@@ -32,11 +32,7 @@ class play():
             c=1
         img_list.pop(0)
         for i in img_list:
-            if i[2]==1:
-                self.pxy(i[0],i[1],c)
-            else:
-                for j in range(i[2]):
-                    self.pxy(i[0]+j,i[1],c)
+            self.pxy(i[0],i[1],i[2],c)
         display.show()
 
 display.fill(0)
@@ -58,9 +54,9 @@ z=time.time()
 nu=0
 old=0
 while 1:
-    if old>219:
-        break
     shp=time.time()-z
+    if shp>219:
+        break
     if old==shp:
         if nu<9:
             nu=nu+1
@@ -70,14 +66,13 @@ while 1:
     else:
         old=shp
         nu=0
-    try:
-        json_file=sdfile.open(str(shp*10+nu)+'.json','r')
-        img_list=json.loads(json_file.read())
-        Play.image(img_list)
-        if old<28:
-            time.sleep(0.09)
-    except Exception as e:
-        print(e)
+    json_file=sdfile.open(str(shp*10+nu)+'.json','r')
+    img_list=json.loads(json_file.read())
+    Play.image(img_list)
+    if old<28:
+        time.sleep(0.09)
+    del json_file
+    del img_list
 
 zx=time.time()-t
 print('Time:',zx)
