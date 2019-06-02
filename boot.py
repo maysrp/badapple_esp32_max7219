@@ -8,10 +8,10 @@ import network
 import sdcard
 
 t=time.time()
-wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-if not wlan.isconnected():
-    wlan.connect('MyHouse_2501_5G_plus','wdx520yjh')
+# wlan = network.WLAN(network.STA_IF)
+# wlan.active(True)
+# if not wlan.isconnected():
+#     wlan.connect('your wifi','passwd')
 
 sdi = SPI(2, baudrate=80000000, polarity=1, phase=0, sck=Pin(18), mosi=Pin(23), miso=Pin(19))
 sd = sdcard.SDCard(sdi, Pin(22))
